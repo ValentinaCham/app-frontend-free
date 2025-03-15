@@ -1,0 +1,51 @@
+<div>
+    <div class="mat-table-wrapper">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Columna ID -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> # </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+        </ng-container>
+  
+        <!-- Columna Título -->
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Tipo </th>
+          <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
+        </ng-container>
+  
+        <!-- Columna Contenido -->
+        <ng-container matColumnDef="maxCapacity">
+          <th mat-header-cell *matHeaderCellDef> Capacidad Máxima </th>
+          <td mat-cell *matCellDef="let element"> {{ element.maxCapacity }} </td>
+        </ng-container>
+  
+        <!-- Columna Autor -->
+        <ng-container matColumnDef="pricePerHour">
+          <th mat-header-cell *matHeaderCellDef> Precio x Hora </th>
+          <td mat-cell *matCellDef="let element"> {{ element.pricePerHour }} </td>
+        </ng-container>
+  
+        <!-- Columna Acciones -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="dvAcciones">
+              <button mat-icon-button placement="top" ngbTooltip="Editar" (click)="viewNote(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+  
+        <!-- Filas de la tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  
+      <!-- Spinner y Paginación -->
+      <div class="mat-table-bottom">
+        <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 50, 100]" [showFirstLastButtons]="true"></mat-paginator>
+      </div>
+    </div>
+</div>
